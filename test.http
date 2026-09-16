@@ -1,0 +1,59 @@
+### BASE
+@base = http://localhost:8080/animais
+
+### 1. CADASTRAR um animal (POST) - deve retornar 201 Created
+POST {{base}}
+Content-Type: application/json
+
+{
+  "nome": "Rex",
+  "especie": "CAO",
+  "raca": "Labrador",
+  "idade": 3,
+  "sexo": "Macho",
+  "porte": "GRANDE",
+  "descricao": "Cao muito carinhoso e brincalhao",
+  "status": "DISPONIVEL"
+}
+
+### 2. CADASTRAR outro animal (POST) - gato
+POST {{base}}
+Content-Type: application/json
+
+{
+  "nome": "Miau",
+  "especie": "GATO",
+  "raca": "Siames",
+  "idade": 2,
+  "sexo": "Femea",
+  "porte": "PEQUENO",
+  "descricao": "Gata calma e tranquila",
+  "status": "DISPONIVEL"
+}
+
+### 3. CONSULTAR todos os animais (GET) - deve retornar 200
+GET {{base}}
+
+### 4. CONSULTAR um animal pelo ID (GET) - use um id que exista, ex: 1
+GET {{base}}/1
+
+### 5. ALTERAR um animal (PUT) - muda status para ADOTADO
+PUT {{base}}/1
+Content-Type: application/json
+
+{
+  "nome": "Rex",
+  "especie": "CAO",
+  "raca": "Labrador",
+  "idade": 4,
+  "sexo": "Macho",
+  "porte": "GRANDE",
+  "descricao": "Cao muito carinhoso e brincalhao",
+  "status": "ADOTADO"
+}
+
+### 6. EXCLUIR um animal (DELETE) - deve retornar 204 No Content
+DELETE {{base}}/2
+
+### 7. CONSULTAR ID inexistente (GET) - deve retornar 404
+GET {{base}}/999
