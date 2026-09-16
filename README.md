@@ -11,7 +11,7 @@ Sistema para cadastro, consulta, atualização e exclusão de animais disponíve
 - **Java 17**
 - **Spring Boot 3.3.4**
 - **Spring Data JPA**
-- **H2 Database** (banco em memória)
+- **PostgreSQL**
 - **Maven**
 
 ## 🚀 Como Executar
@@ -19,8 +19,17 @@ Sistema para cadastro, consulta, atualização e exclusão de animais disponíve
 ### Pré-requisitos
 - Java 17 ou superior
 - Maven
+- PostgreSQL instalado e rodando
 
-### Passo a passo
+### 1. Criar o banco de dados
+
+Acesse o PostgreSQL e crie o banco `adocao`:
+
+```sql
+CREATE DATABASE adocao;
+```
+
+### 2. Passo a passo
 
 ```bash
 # Clone o repositório
@@ -29,11 +38,16 @@ git clone https://github.com/bryan7paz/sistema-adocao-animais-.git
 # Acesse a pasta do projeto
 cd sistema-adocao-animais
 
+# Compile o projeto
+mvn package -DskipTests
+
 # Execute a aplicação
-./mvnw spring-boot:run
+java -jar target/adocao-0.0.1-SNAPSHOT.jar
 ```
 
 A API estará disponível em: `http://localhost:8080`
+
+> **Nota:** A tabela `animais` será criada automaticamente pelo Hibernate (`ddl-auto=update`).
 
 ## 📡 Endpoints
 
@@ -121,11 +135,12 @@ DELETE /animais/1
 
 ## 🗄️ Banco de Dados
 
-- **Tipo:** H2 em memória
-- **Console H2:** `http://localhost:8080/h2-console`
-- **URL JDBC:** `jdbc:h2:mem:adocao`
-- **Usuário:** `sa`
-- **Senha:** (vazio)
+- **Tipo:** PostgreSQL
+- **URL JDBC:** `jdbc:postgresql://localhost:5432/adocao`
+- **Usuário:** `postgres`
+- **Senha:** `postgres`
+
+> **Configuração:** Ajuste as credenciais no arquivo `src/main/resources/application.properties` conforme o seu ambiente.
 
 ## 🧪 Testes
 
